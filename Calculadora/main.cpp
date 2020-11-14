@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
+#include <limits>
 #include <cmath>
 #include <string>
 
@@ -14,8 +15,15 @@ float resultado;
 //Variables booleanas y auxiliar
 bool salir;
 
-
 //FUNCIONES MATEMÁTICAS BÁSCICAS 
+
+int error()
+{
+    cout <<"Eso no ha funcionado, inténtelo de nuevo\n\n";
+    return 0;
+}
+
+
 int nueva_operacion()
 {
     bool check = false;
@@ -25,13 +33,13 @@ int nueva_operacion()
     {
         cout << "¿Desea realizar otra operación?(si/no)" <<endl;
         cin >> continuar;
-        if (continuar == "si" or continuar == "Si" or continuar == "SI")
+        if (continuar == "si" or continuar == "Si" or continuar == "SI" or continuar == "s")
         {   
             cout << "\033[2J\033[1;1H";
             check = true;
         }
         
-        else if (continuar == "no" or continuar == "No" or continuar == "NO")
+        else if (continuar == "no" or continuar == "No" or continuar == "NO" or continuar == "n")
         {   
             check = true;
             salir = true;
@@ -50,10 +58,25 @@ int suma()
 {   
     cout << "\033[2J\033[1;1H";
     cout << "\nSUMA\n";
+    
     cout << "Introduzca el primer valor:" << endl;
-    cin >> num_a;
+    while(!(cin >> num_a))
+    {
+        error();
+        cout << "Introduzca el primer valor:" << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+
     cout << "Introduzca el segundo valor:" << endl;
-    cin >> num_b;
+    while(!(cin >> num_b))
+    {
+        error();
+        cout << "Introduzca el segundo valor:" << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+
     resultado = num_a + num_b;
     cout << "La suma de " <<num_a <<" mas " <<num_b << " es igual a " <<resultado <<endl;
     cout <<"\n";
@@ -68,10 +91,24 @@ int resta()
 {   
     cout << "\033[2J\033[1;1H";
     cout << "\nRESTA\n";
+    
     cout << "Introduzca el primer valor:" << endl;
-    cin >> num_a;
+    while (!(cin >> num_a))
+    {   
+        error();
+        cout << "Introduzca el primer valor:" << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+    
     cout << "Introduzca el segundo valor:" << endl;
-    cin >> num_b;
+    while (!(cin >> num_b))
+    {   
+        error();
+        cout << "Introduzca el segundo valor:" << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
     resultado = num_a - num_b;
     cout << "La resta de " <<num_a <<" menos " <<num_b << " es igual a " <<resultado <<endl;
     cout <<"\n";
@@ -86,10 +123,25 @@ int multiplicacion()
 {   
     cout << "\033[2J\033[1;1H";
     cout << "\nMULTIPLICACIÓN\n";
+    
     cout << "Introduzca el primer valor:" << endl;
-    cin >> num_a;
+    while (!(cin >> num_a))
+    {   
+        error();
+        cout << "Introduzca el primer valor:" << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+    
     cout << "Introduzca el segundo valor:" << endl;
-    cin >> num_b;
+    while (!(cin >> num_b))
+    {   
+        error();
+        cout << "Introduzca el segundo valor:" << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+
     resultado = num_a * num_b;
     cout << "La multiplicación de " <<num_a <<" por " << num_b << " es igual a " <<resultado <<endl;
     cout <<"\n";
@@ -104,14 +156,27 @@ int division()
 {   
     cout << "\033[2J\033[1;1H";
     cout << "\nDIVISIÓN\n";
+    
+    cout << "Introduzca el primer valor:" << endl;
+    while (!(cin >> num_a))
+    {   
+        error();
+        cout << "Introduzca el primer valor:" << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+
     bool check = false;
     while (check == false)
     {
-        cout << "Introduzca el primer valor:" << endl;
-        cin >> num_a;
         cout << "Introduzca el segundo valor:" << endl;
-        cin >> num_b;
-        
+        while (!(cin >> num_b))
+        {     
+            error();
+            cout << "Introduzca el segundo valor:" << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        } 
         if (num_b == 0)
         {
             cout << "No se puede dividir entre cero, inténtelo con otra cifra." << endl;
@@ -121,6 +186,7 @@ int division()
             check = true;
         }
     }
+
     resultado = num_a / num_b;
     cout << "La división de " <<num_a <<" entre " << num_b << " es igual a " <<resultado <<endl;
     cout <<"\n";
@@ -138,8 +204,14 @@ int raiz_cuadrada()
     bool check = false;
     while (check == false)
     {
-        cout << "Introduzca un valor para obtener su raíz cuadrada" << endl;
-        cin >> num_a;
+        cout << "Introduzca un valor para obtener su raíz cuadrada:" << endl;
+        while (!(cin >> num_a))
+        {   
+            error();
+            cout << "Introduzca un valor para obtener su raíz cuadrada:" << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
 
         if (num_a == 0)
         {
@@ -165,8 +237,16 @@ int area_circulo()
 {   
     cout << "\033[2J\033[1;1H";
     cout <<"ÁREA DE CIRCULO" << endl;
+
     cout << "Introduzca el valor del radio:" << endl;
-    cin >> num_a;
+    while (!(cin >> num_a))
+        {   
+            error();
+            cout << "Introduzca el valor del radio:" << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+
     resultado = M_PI * pow(num_a, 2);
     cout << "El área de un círculo cuyo radio es de " <<num_a <<", es de " <<resultado <<endl;
     cout <<"\n";
@@ -182,9 +262,22 @@ int area_rectangulo()
     cout << "\033[2J\033[1;1H";
     cout <<"ÁREA DE RECTÁNGULO" << endl;
     cout << "Introduzca el valor de la base:" << endl;
-    cin >> num_a;
+    while (!(cin >> num_a))
+        {   
+            error();
+            cout << "Introduzca el valor de la base:" << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+    
     cout << "Introduzca el valor de la altura:" << endl;
-    cin >> num_b;
+    while (!(cin >> num_b))
+        {   
+            error();
+            cout << "Introduzca el valor de la altura:" << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
     resultado = num_a * num_b;
     cout << "El área de un rectángulo de " <<num_a <<" por " <<num_b <<", es de " <<resultado <<endl;
     cout <<"\n";
@@ -199,10 +292,25 @@ int area_triangulo()
 {   
     cout << "\033[2J\033[1;1H";
     cout <<"ÁREA DE TRIÁNGULO" << endl;
+
     cout << "Introduzca el valor de la base:" << endl;
-    cin >> num_a;
+    while (!(cin >> num_a))
+        {   
+            error();
+            cout << "Introduzca el valor de la base:" << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+
     cout << "Introduzca el valor de la altura:" << endl;
-    cin >> num_b;
+    while (!(cin >> num_b))
+        {   
+            error();
+            cout << "Introduzca el valor de la altura:" << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+
     resultado = (num_a * num_b) / 2;
     cout << "El área de un triángulo de " <<num_a <<" por " <<num_b <<", es de " <<resultado <<endl;
     cout <<"\n";
@@ -217,8 +325,16 @@ int area_cuadrado()
 {   
     cout << "\033[2J\033[1;1H";
     cout <<"ÁREA DE CUADRADO" << endl;
+
     cout << "Introduzca el valor de sus lados:" << endl;
-    cin >> num_a;
+    while (!(cin >> num_a))
+        {   
+            error();
+            cout << "Introduzca el valor sus lados:" << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+
     resultado = pow(num_a, 2);
     cout << "El área de un cuadrado cuyos lados miden " <<num_a <<", es de " <<resultado <<endl;
     cout <<"\n";
@@ -233,8 +349,16 @@ int area_pentagono()
 {   
     cout << "\033[2J\033[1;1H";
     cout <<"ÁREA DE PENTÁGONO (REGULAR)" << endl;
+
     cout << "Introduzca el valor de sus lados:" << endl;
-    cin >> num_a;
+    while (!(cin >> num_a))
+        {   
+            error();
+            cout << "Introduzca el valor sus lados:" << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+
     resultado = 1.7204774195 * pow(num_a, 2);
     cout << "El área del pentágono es de " <<resultado <<endl;
     cout <<"\n";
@@ -248,8 +372,16 @@ int area_hexagono()
 {   
     cout << "\033[2J\033[1;1H";
     cout <<"ÁREA DE HEXÁGONO (REGULAR)" << endl;
+
     cout << "Introduzca el valor de sus lados:" << endl;
-    cin >> num_a;
+    while (!(cin >> num_a))
+        {   
+            error();
+            cout << "Introduzca el valor sus lados:" << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+        
     resultado = 2.5980762114 * pow(num_a, 2);
     cout << "El área del hexágono es de " <<resultado <<endl;
     cout <<"\n";
