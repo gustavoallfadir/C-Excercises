@@ -16,7 +16,6 @@ float resultado;
 bool salir;
 
 //FUNCIONES MATEMÁTICAS BÁSCICAS 
-
 int error()
 {
     cout <<"Eso no ha funcionado, inténtelo de nuevo\n\n";
@@ -381,7 +380,7 @@ int area_hexagono()
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
-        
+
     resultado = 2.5980762114 * pow(num_a, 2);
     cout << "El área del hexágono es de " <<resultado <<endl;
     cout <<"\n";
@@ -515,7 +514,7 @@ int menu()
             menu_geometria();
         }
 
-        else if (menu_choice == "7")
+        else if (menu_choice == "7" or menu_choice == "salir")
         {   
             check = true;
             salir = true;
@@ -527,8 +526,6 @@ int menu()
             check = false;
         }
     }
-
-    cout << "Programa finalizado." << endl;
 
     return 0;
 }
@@ -545,6 +542,8 @@ int main()
     {
         menu();
     }
+
+    cout << "Programa finalizado" <<endl;
 
     return 0;
 }
