@@ -14,7 +14,6 @@ class Persona
         //Constructor 
         Persona(string _nombres, string _apellidos, int _edad)
         {
-
             nombres = _nombres;
             apellidos = _apellidos;
             edad = _edad;
